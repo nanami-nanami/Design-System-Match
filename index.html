@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Component Match</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='4' fill='%231D42A6'/%3E%3Ctext x='32' y='39' text-anchor='middle' font-family='Arial' font-size='20' font-weight='700' fill='white'%3ECM%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main id="app" class="app">
+      <header class="site-nav" aria-label="Game details">
+        <div class="brand-lockup" aria-label="Component Match">
+          <span class="brand-mark-small" aria-hidden="true">CM</span>
+          <span>Component Match</span>
+        </div>
+      </header>
+
+      <section class="start-view" data-screen="start">
+        <div class="masthead">
+          <p class="kicker">UX Team Design System</p>
+          <h1>Component Match</h1>
+          <dl class="round-details" aria-label="Round details">
+            <div>
+              <dt>Mode</dt>
+              <dd>Match</dd>
+            </div>
+            <div>
+              <dt>Pairs per round</dt>
+              <dd><span id="round-pair-count">10</span></dd>
+            </div>
+            <div>
+              <dt>Cards</dt>
+              <dd><span id="round-card-count">20</span></dd>
+            </div>
+          </dl>
+        </div>
+
+        <p class="start-hint">
+          Flip two cards per turn. Match each component visual with its name before the minute runs
+          out.
+        </p>
+
+        <form class="start-panel" id="start-form" autocomplete="off">
+          <label for="player-name">Your name</label>
+          <div class="name-row">
+            <input
+              id="player-name"
+              name="player-name"
+              type="text"
+              maxlength="24"
+              required
+            />
+            <button class="primary-action" type="submit">Start 1-minute round</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="game-view hidden" data-screen="game" aria-live="polite">
+        <header class="game-bar">
+          <div>
+            <p class="kicker" id="game-mode-label">Player</p>
+            <h2 id="active-player">Designer</h2>
+          </div>
+          <div class="game-side">
+            <dl class="stats">
+              <div>
+                <dt>Time left</dt>
+                <dd><span id="time-left">60</span>s</dd>
+              </div>
+              <div>
+                <dt>Matched pairs</dt>
+                <dd><span id="match-count">0</span>/<span id="total-pairs">10</span></dd>
+              </div>
+              <div>
+                <dt>Moves</dt>
+                <dd id="move-count">0</dd>
+              </div>
+            </dl>
+            <div class="game-actions">
+              <button class="secondary-action home-action" id="home-button" type="button">Home</button>
+              <button class="secondary-action review-back hidden" id="back-to-results" type="button">
+                Back to results
+              </button>
+            </div>
+          </div>
+        </header>
+
+        <div class="board-shell">
+          <div id="board" class="board" aria-label="Memory card board"></div>
+        </div>
+        <p class="game-hint">Tap a face-down card to flip it. A preview card pairs with its component name card.</p>
+      </section>
+
+      <section class="result-view hidden" data-screen="result">
+        <div class="result-summary">
+          <p class="kicker">Round complete</p>
+          <h2 id="result-title">Well done</h2>
+          <p id="result-copy"></p>
+          <div class="result-actions">
+            <button class="primary-action" id="play-again" type="button">Play again</button>
+            <button class="secondary-action" id="review-round" type="button">Review round</button>
+            <button class="secondary-action" id="result-home" type="button">Home</button>
+            <button class="secondary-action" id="change-player" type="button">Change name</button>
+          </div>
+        </div>
+
+        <section class="leaderboard-section" aria-labelledby="leaderboard-title">
+          <div class="section-heading leaderboard-heading">
+            <div>
+              <p class="kicker">Ranking</p>
+              <h2 id="leaderboard-title">Ranking</h2>
+            </div>
+            <button class="secondary-action reset-ranking" id="reset-ranking" type="button">
+              Reset ranking
+            </button>
+          </div>
+          <ol id="leaderboard" class="leaderboard"></ol>
+        </section>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
